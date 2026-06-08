@@ -1,3 +1,9 @@
+# ==============================================================================
+# Description: Added a 20GB secondary EBS volume (/dev/sdm) for persistent data storage.
+# Revision number: 1.1
+# Date: May 24, 2026
+# ==============================================================================
+
 AWSTemplateFormatVersion: "2010-09-09"
 Description: Amazon Elastic Compute Cloud (EC2) Template
 
@@ -25,3 +31,9 @@ Resources:
         - AssociatePublicIpAddress: "true"
           DeviceIndex: "0"
           SubnetId: !Ref SubnetId
+      BlockDeviceMappings:
+        - DeviceName: /dev/sdm
+          Ebs:
+            VolumeType: gp2
+            DeleteOnTermination: false
+            VolumeSize: 20
